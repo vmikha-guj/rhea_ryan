@@ -6,65 +6,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #fffaf0, #f0f8ff);
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
+      background: linear-gradient(to right, #f8fbff, #fcefee);
+      text-align: center;
     }
     .container {
-      width: 90%;
       max-width: 600px;
-      background: #ffffffcc;
-      padding: 30px 20px;
-      margin-top: 20px;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      backdrop-filter: blur(5px);
+      margin: auto;
+      padding: 20px;
     }
     h1 {
       font-size: 28px;
-      color: #2c3e50;
-      margin-bottom: 10px;
+      margin-bottom: 0;
     }
     h2 {
-      font-size: 20px;
-      color: #34495e;
-      margin-bottom: 20px;
+      font-size: 18px;
+      color: #555;
     }
-    input[type="text"] {
+    input {
       width: 100%;
-      padding: 14px;
+      padding: 12px;
       font-size: 16px;
+      margin-top: 15px;
+      border-radius: 8px;
       border: 1px solid #ccc;
-      border-radius: 10px;
-      box-sizing: border-box;
     }
     button {
-      margin-top: 20px;
-      padding: 14px 25px;
+      margin-top: 15px;
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
       background-color: #3498db;
       color: white;
-      font-size: 16px;
-      font-weight: bold;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
       width: 100%;
-    }
-    button:active {
-      background-color: #2980b9;
     }
     #result {
       margin-top: 20px;
-      font-size: 18px;
       font-weight: bold;
-      color: #2d3436;
-      line-height: 1.5;
     }
     .layout-wrapper {
       position: relative;
@@ -73,7 +54,6 @@
     }
     #layout {
       width: 100%;
-      display: block;
       border-radius: 10px;
     }
     .highlight {
@@ -93,21 +73,16 @@
 <div class="container">
   <h1>Ryan - Rhea Wedding Reception</h1>
   <h2>Find your table</h2>
-  <input type="text" id="guestName" placeholder="Enter your name" />
-  <button id="searchButton">Find Table</button>
+  <input type="text" id="guestName" placeholder="Enter your name">
+  <button onclick="findTable()">Find My Table</button>
   <div id="result"></div>
 </div>
 
 <div class="layout-wrapper">
-  <img id="layout" src="your_table_layout_image.jpg" alt="Table Layout">
-  <div id="highlight" class="highlight" style="display: none;"></div>
+  <img id="layout" src="your_table_layout_image.jpg" alt="Layout">
+  <div id="highlight" class="highlight" style="display:none;"></div>
 </div>
 
 <script src="script.js"></script>
-<script>
-  document.getElementById('findBtn').addEventListener('click', function () {
-    findTable();
-  });
-</script>
 </body>
 </html>
