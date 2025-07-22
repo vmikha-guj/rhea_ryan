@@ -23,8 +23,7 @@ async function findTable() {
   try {
     const response = await fetch('https://script.google.com/macros/s/AKfycbydqHDgOoL2iPHu0sbEBeR7gdK_bq9pAuWWQbRSGx4s1kfEtZ-CbJX68-lAU7usHLon/exec?name=' + encodeURIComponent(name));
     const text = await response.text();
-    resultDiv.innerHTML = text.replace(/\n/g, "<br>").replace(/\r\n/g, "<br>").replace(/
-/g, "<br>");
+    resultDiv.innerHTML = text.replace(/\n/g, "<br>").replace(/\r\n/g, "<br>").replace(/\n/g, "<br>").replace(/\r/g, "<br>");
 
     const lines = text.split(/\r?\n/);
     const foundTables = new Set();
