@@ -1,3 +1,4 @@
+
 const layout = document.getElementById('layout');
 const highlight = document.getElementById('highlight');
 let tablePositions = [];
@@ -24,11 +25,9 @@ async function findTable() {
     const response = await fetch('https://script.google.com/macros/s/AKfycbydqHDgOoL2iPHu0sbEBeR7gdK_bq9pAuWWQbRSGx4s1kfEtZ-CbJX68-lAU7usHLon/exec?name=' + encodeURIComponent(name));
     const rawText = await response.text();
 
-    // Convert line breaks for display
     const htmlText = rawText.replace(/\r?\n/g, "<br>");
     resultDiv.innerHTML = htmlText;
 
-    // Parse table numbers
     const lines = rawText.split(/\r?\n/);
     const foundTables = new Set();
 
