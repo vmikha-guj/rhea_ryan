@@ -22,23 +22,27 @@ async function findTable() {
 
   try {
     const response = await fetch('https://script.google.com/macros/s/AKfycbydqHDgOoL2iPHu0sbEBeR7gdK_bq9pAuWWQbRSGx4s1kfEtZ-CbJX68-lAU7usHLon/exec?name=' + encodeURIComponent(name));
-    const text = await response.text();
+    const rawText = await response.text();
+    console.log("RAW TEXT:", rawText);
 
-// Clean all known encodings of line breaks
-const cleanText = text
-  .replace(/\\r\\n/g, "<br>")
-  .replace(/\\n/g, "<br>")
-  .replace(/\r\n/g, "<br>")
-  .replace(/\n/g, "<br>");
+    // Convert all forms of 
+ into <br> for browser display
+    const htmlText = rawText
+      .replaceAll("\\n", "<br>")    // handles \n
+      .replaceAll("\n", "<br>")     // handles 
+ in strings
+      .replaceAll("
+", "<br>")    // handles CRLF
+      .replaceAll("
+", "<br>")      // handles LF
+      .replaceAll("", "<br>");     // handles CR
 
-console.log("CLEANED RESPONSE:", cleanText);
+    resultDiv.innerHTML = htmlText;
 
-document.getElementById('result').innerHTML = cleanText;
-
-
-
-
-    const lines = text.split(/\r?\n/);
+    // Extract table numbers for highlighting
+    const plainText = rawText.replaceAll("\n", "
+");
+    const lines = plainText.split(/\r?\n|\n|\r|\n/);
     const foundTables = new Set();
 
     for (const line of lines) {
@@ -63,6 +67,7 @@ document.getElementById('result').innerHTML = cleanText;
       highlight.style.display = "none";
     }
   } catch (error) {
+    console.error("Fetch error:", error);
     resultDiv.innerHTML = "Error occurred.";
     resultDiv.style.color = "red";
     highlight.style.display = "none";
