@@ -17,7 +17,7 @@ async function findTable() {
   resultDiv.style.color = "#333";
 
   try {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbydqHDgOoL2iPHu0sbEBeR7gdK_bq9pAuWWQbRSGx4s1kfEtZ-CbJX68-lAU7usHLon/exec' + encodeURIComponent(name));
+    const response = await fetch('https://script.google.com/macros/s/AKfycbydqHDgOoL2iPHu0sbEBeR7gdK_bq9pAuWWQbRSGx4s1kfEtZ-CbJX68-lAU7usHLon/exec?name=' + encodeURIComponent(name));
     const text = await response.text();
     resultDiv.innerText = text;
 
