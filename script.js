@@ -23,7 +23,9 @@ async function findTable() {
   try {
     const response = await fetch('https://script.google.com/macros/s/AKfycbydqHDgOoL2iPHu0sbEBeR7gdK_bq9pAuWWQbRSGx4s1kfEtZ-CbJX68-lAU7usHLon/exec?name=' + encodeURIComponent(name));
     const text = await response.text();
+    console.log("RAW RESPONSE:", text); // <- Add this for debugging
     resultDiv.innerHTML = text.replace(/\r?\n/g, "<br>");
+
 
 
     const lines = text.split(/\r?\n/);
