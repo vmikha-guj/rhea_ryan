@@ -23,30 +23,23 @@ async function findTable() {
   try {
     const response = await fetch('https://script.google.com/macros/s/AKfycbydqHDgOoL2iPHu0sbEBeR7gdK_bq9pAuWWQbRSGx4s1kfEtZ-CbJX68-lAU7usHLon/exec?name=' + encodeURIComponent(name));
     const rawText = await response.text();
-    console.log("RAW TEXT:", rawText);
 
-    // Convert all forms of 
- into <br> for browser display
     const htmlText = rawText
-      .replaceAll("\\n", "<br>")    // handles \n
-      .replaceAll("\n", "<br>")     // handles 
- in strings
-      .replaceAll("
-", "<br>")    // handles CRLF
-      .replaceAll("
-", "<br>")      // handles LF
-      .replaceAll("", "<br>");     // handles CR
+      .replace(/\r\n/g, "<br>")
+      .replace(/\n/g, "<br>")
+      .replace(/
+/g, "<br>")
+      .replace(/
+/g, "<br>")
+      .replace(//g, "<br>");
 
     resultDiv.innerHTML = htmlText;
 
-    // Extract table numbers for highlighting
-    const plainText = rawText.replaceAll("\n", "
-");
-    const lines = plainText.split(/\r?\n|\n|\r|\n/);
+    const lines = rawText.split(/\r?\n|\n|\r/);
     const foundTables = new Set();
 
-    for (const line of lines) {
-      const match = line.match(/Table (\d+)/);
+    for (let i = 0; i < lines.length; i++) {
+      const match = lines[i].match(/Table (\d+)/);
       if (match) {
         foundTables.add(parseInt(match[1]));
       }
