@@ -2,80 +2,99 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Wedding Table Finder</title>
+  <title>Ryan - Rhea Wedding Reception</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f0f4f8;
+      background: linear-gradient(to bottom right, #fffaf0, #f0f8ff);
       margin: 0;
       padding: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
       min-height: 100vh;
     }
     .container {
       width: 90%;
       max-width: 600px;
-      background: #fff;
-      padding: 30px;
+      background: #ffffffcc;
+      padding: 30px 20px;
       margin-top: 20px;
       border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
       text-align: center;
+      backdrop-filter: blur(5px);
+    }
+    h1 {
+      font-size: 28px;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 20px;
+      color: #34495e;
+      margin-bottom: 20px;
     }
     input[type="text"] {
       width: 100%;
-      padding: 12px;
+      padding: 14px;
       font-size: 16px;
-      margin-top: 20px;
       border: 1px solid #ccc;
-      border-radius: 8px;
+      border-radius: 10px;
       box-sizing: border-box;
     }
     button {
       margin-top: 20px;
-      padding: 12px 20px;
+      padding: 14px 25px;
       background-color: #3498db;
       color: white;
       font-size: 16px;
+      font-weight: bold;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
+      width: 100%;
+    }
+    button:active {
+      background-color: #2980b9;
     }
     #result {
       margin-top: 20px;
       font-size: 18px;
       font-weight: bold;
+      color: #2d3436;
+      line-height: 1.5;
     }
     .layout-wrapper {
       position: relative;
       max-width: 100%;
-      margin-top: 20px;
+      margin-top: 30px;
     }
     #layout {
       width: 100%;
       display: block;
+      border-radius: 10px;
     }
     .highlight {
       position: absolute;
-      width: 20px;
-      height: 20px;
-      background-color: rgba(255, 0, 0, 0.6);
+      width: 24px;
+      height: 24px;
+      background-color: rgba(255, 0, 0, 0.7);
       border-radius: 50%;
       transform: translate(-50%, -50%);
       pointer-events: none;
+      box-shadow: 0 0 8px red;
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <h2>Find Your Table</h2>
-  <input type="text" id="guestName" placeholder="Enter full or partial name" />
-  <button onclick="findTable()">Find My Table</button>
+  <h1>Ryan - Rhea Wedding Reception</h1>
+  <h2>Find your table</h2>
+  <input type="text" id="guestName" placeholder="Enter your name" />
+  <button id="findBtn">Find My Table</button>
   <div id="result"></div>
 </div>
 
@@ -85,5 +104,11 @@
 </div>
 
 <script src="script.js"></script>
+<script>
+  // Ensure mobile tap works
+  document.getElementById('findBtn').addEventListener('click', function () {
+    findTable();
+  });
+</script>
 </body>
 </html>
